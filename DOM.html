@@ -5,61 +5,114 @@
 	<meta charset="UTF-8">
 	<title>DOM JS</title>
 	<link rel="shortcut icon" href="https://cdn.iconscout.com/public/images/icon/premium/png-128/lightning-weather-forecast-cloud-cloudy-358f3dde3d2c5468-128x128.png" type="image/x-icon">
-
 	<!-- style -->
-	<style>
-		body{
-			height:100vh;
-			display: grid;
-			justify-content: center;
-			align-items: center;
-			align-content: center;
-		  }
+		<style>
 
-		h1{
-			letter-spacing: 20px;
-			font-size: 40px; 
-		}
+			body{
+				height:100vh;
+				display:grid;
+				justify-content: center;
+				align-items: center;
+				align-content: center;
+			  }
 
-		h3{
+			h1{
+				letter-spacing: 20px;
+				font-size: 40px;
+				text-align:center;
+			}
 
-			text-transform: uppercase; 
-		    letter-spacing: 12px;
-		    text-align: center;
-		}
-	</style>
+			h3{
+				text-transform: uppercase;
+			    letter-spacing: 12px;
+			    text-align: center;
+			}
+
+			li{
+				/* height:35px; */
+				background:#ececec;
+				margin-top:5px;
+				list-style: none;
+				padding:15px
+			}
+			.clicked{
+				color:#9c9c9c;
+				background:#f9f9f9;
+			}
+
+			.button{
+				float: right;
+				background:#ccc788;
+				padding:5px 7px;
+				border-radius:2px;
+				 user-select: none;
+			}
+			.button:hover{
+				background:#dfda9c;
+			}
+
+			.button:active{
+				background:#814554;
+			}
+		</style>
+	<!-- script -->
+		<script type="text/javascript" src="script.js"></script>
 
 </head>
 
-
 <body>
+
 	<div id="titulo">
 				<h1>JS</h1>
 				<h3>DOM</h3>
 	</div>
-	<div id="lista1" class="lista">
-		<ul class="animales">
-			<li class="item1">getElementById('')</li>
-			<li class="item2">getElementByClassName('')</li>
-			<li class="item3">Array.from('')</li>
-			<li class="item4">querySelector('')</li>
-			<li class="item5">addEventListener('click', function{})</li>
-			<li class="item5">target()</li>
-	</div>
+	
+	<ul id="lista1" class="lista"></div>
+			<li class="item1">getElementById('')
+				<span class="button">action</span>
+			</li>
+			<li class="item2">getElementByClassName('')
+				<span class="button">action</span>
+			</li>
+			<li class="item3">Array.from('')
+				<span class="button">action</span>
+			</li>
+			<li class="item4">querySelector('')
+				<span class="button">action</span>
+			</li>
+			<li class="item5">addEventListener('click', function{})
+				<span class="button">action</span>
+			</li>
+			<li class="item5">target()
+				<span class="button">action</span>
+			</li>
+		</ul>
 
-	<div id="lista2" class="lista">
-		<ul class="animales">
-			<li class="item1">Perro</li>
-			<li class="item2">gato</li>
-			<li class="item3">ardilla</li>
-			<li class="item4">pato</li>
-			<li class="item5">conejo</li>
-		</ul>	
-	</div>
+	<ul id="lista2" class="lista">
+		<li class="item1">Perro
+			<span class="button">action</span>
+		</li>
+		<li class="item2">gato
+			<span class="button">action</span>
+		</li>
+		<li class="item3">ardilla
+			<span class="button">action</span>
+		</li>
+		<li class="item4">pato
+			<span class="button">action</span>
+		</li>
+		<li class="item5">conejo
+			<span class="button">action</span>
+		</li>
+	</ul>
 
 
+	<form id="formulario">
+		<input type="text">
+		<input type="date">
+		<button  type="button">enviar</button>
+	</form>
 
 </body>
-		<!-- script -->
-	<script type="text/javascript" src="script.js"></script>
+
 </html>
