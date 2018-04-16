@@ -9,7 +9,7 @@
 		<style>
 
 			body{
-				height:100vh;
+				/* height:100vh; */
 				display:grid;
 				justify-content: center;
 				align-items: center;
@@ -27,13 +27,15 @@
 			    letter-spacing: 12px;
 			    text-align: center;
 			}
-
+			ul{
+				padding:0;
+			}
 			li{
 				/* height:35px; */
 				background:#ececec;
 				margin-top:5px;
 				list-style: none;
-				padding:15px
+				padding:20px
 			}
 			.clicked{
 				color:#9c9c9c;
@@ -43,17 +45,36 @@
 			.button{
 				float: right;
 				background:#ccc788;
-				padding:5px 7px;
+				padding:8px 12px;
 				border-radius:2px;
-				 user-select: none;
+				user-select: none;
+				margin-left:30px;
+
 			}
-			.button:hover{
+
+			button{
+				background:#ccc788;
+				padding:0px 20px;
+				border-radius:2px;
+				border:none;
+				height: 42px;
+
+			}
+
+			.button:hover, button:hover{
 				background:#dfda9c;
 			}
 
-			.button:active{
+			.button:active, button:active{
 				background:#814554;
 			}
+			input {
+				padding: 0 15px;
+				border-radius: 2px;
+				height: 40px;
+				border: 1px solid #ccc;
+			}	
+
 		</style>
 	<!-- script -->
 		<script type="text/javascript" src="script.js"></script>
@@ -66,51 +87,37 @@
 				<h1>JS</h1>
 				<h3>DOM</h3>
 	</div>
-	
+	<!-- search -->		
+	<form id="search">
+		<input type="text" placeholder="buscar">	
+	</form>
+	<!-- listas -->
 	<ul id="lista1" class="lista"></div>
-			<li class="item1">getElementById('')
-				<span class="button">action</span>
+			<li class="item">getElementById('')
+				<span class="button">borrar</span>
 			</li>
-			<li class="item2">getElementByClassName('')
-				<span class="button">action</span>
+			<li class="item">getElementByClassName('')
+				<span class="button">borrar</span>
 			</li>
-			<li class="item3">Array.from('')
-				<span class="button">action</span>
+			<li class="item">Array.from('')
+				<span class="button">borrar</span>
 			</li>
-			<li class="item4">querySelector('')
-				<span class="button">action</span>
+			<li class="item">querySelector('')
+				<span class="button">borrar</span>
 			</li>
-			<li class="item5">addEventListener('click', function{})
-				<span class="button">action</span>
+			<li class="item">addEventListener('click', function{})
+				<span class="button">borrar</span>
 			</li>
-			<li class="item5">target()
-				<span class="button">action</span>
+			<li class="item">target()
+				<span class="button">borrar</span>
 			</li>
 		</ul>
 
-	<ul id="lista2" class="lista">
-		<li class="item1">Perro
-			<span class="button">action</span>
-		</li>
-		<li class="item2">gato
-			<span class="button">action</span>
-		</li>
-		<li class="item3">ardilla
-			<span class="button">action</span>
-		</li>
-		<li class="item4">pato
-			<span class="button">action</span>
-		</li>
-		<li class="item5">conejo
-			<span class="button">action</span>
-		</li>
-	</ul>
 
-
+	<!-- Agregar -->
 	<form id="formulario">
-		<input type="text">
-		<input type="date">
-		<button  type="button">enviar</button>
+		<input class="campoDeTexto" type="text" placeholder="nuevo item">
+		<button id="submitItem" type="button">enviar</button>
 	</form>
 
 </body>
