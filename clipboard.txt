@@ -1,0 +1,3 @@
+<h1>Interact with the clipboard</h1>
+
+https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Interact_with_the_clipboard
