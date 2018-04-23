@@ -122,7 +122,7 @@
     <div class="container">
 
         <div id="main">
-            <h1>YANI V1.0</h1> 
+            <h1>YANI V0.1</h1> 
             <p>Pegar tabla de Google</p>
             <textarea placeholder="cmd + v" ></textarea>
             <h3 class="listo hide">listo!</h3>
@@ -160,8 +160,8 @@ document.addEventListener('DOMContentLoaded', function () {
     
     }
 
-    function Producto(pId, pSku, pNombre, pPrecio, pDesc, pVar) {
-                this.pId = pId;
+    function Producto(pImg, pSku, pNombre, pPrecio, pDesc, pVar) {
+                this.pImg = pImg;
                 this.pSku = pSku;
                 this.pNombre = pNombre;
                 this.pPrecio = pPrecio;
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
         row.classList.add('Theader')
         
         row.innerHTML = `
-        <td>id</td>
+        <td>Img</td>
         <td>Sku</td>
         <td>Fotos</td>
         <td>Categoria</td>
@@ -202,25 +202,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
         tabla.appendChild(row);
         
-        //rows cabecera
+        //rows th
         lista.forEach(function (item, i) {        
            
-           const row = document.createElement('tr');         
+            function fotos(i) {
+                var imgList = ''
+                var cantidad = lista[i].pImg;
+                for (let j = 0; j < cantidad; j++) {      
+                     imgList = imgList + `www.x.com/img/${lista[i].pSku}_${j}<br>` ;
+                }
+                return imgList;               
+            }        
+                    
+            const row = document.createElement('tr');         
            
-            row.innerHTML = `
-            
-            <th>${lista[i].pId}</th>
+            row.innerHTML = `          
+            <th>id</th>
             <th>${lista[i].pSku}</th>
-            <th></th>
+            <th>${fotos(i)}</th>   
             <th>${lista[i].pNombre}</th>
             <th></th>
             <th><strong>Nombre: </strong>${lista[i].pNombre}<br>
                 <strong>Descripción: </strong>${lista[i].pDesc}</th>
             <th>${lista[i].pVar}</th>
             `
-
+                
             tabla.appendChild(row);
-        
+            
+
+
             //rows internas
             lista[i].pVar.forEach(function (item, j) {
                 
@@ -228,9 +238,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 row.innerHTML =`
 
-                <td>${lista[i].pId}</td>
+                <td>${lista[i].pImg}</td>
                 <td>${lista[i].pSku +'_'+ lista[i].pVar[j]}</td>
-                <td>http://www.web.com/fotos/${lista[i].pSku}_${[j]}</td>
+                <td></td>
                 <td></td>
                 <td>${lista[i].pPrecio}</td>
                 <td></td>
