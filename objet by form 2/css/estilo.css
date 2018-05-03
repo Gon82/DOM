@@ -1,0 +1,16 @@
+/*form turnos*/
+
+body{
+	font-family: sans-serif
+}
+ul{
+	list-style: none;
+}
+p{
+	color:#ffffff;
+}
+.turno{
+	display: block;
+	padding: 20px;
+	background: #3e44a1;
+}

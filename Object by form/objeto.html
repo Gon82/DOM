@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Obj Private vars</title>
+
+<style>
+body{
+	font-family: sans-serif;
+	font-size: 16px;
+	background: #494949;
+	display:grid;
+	height: 100vh;
+	width: 100vw;
+	grid-gap: 0;
+	margin:0;
+	/* align-items: center;
+	align-content: center;
+	justify-content: center; */
+}
+
+form{
+	font-size: 16px;
+	width: 300px;
+	padding: 25px 15px;
+	background: #8d8d8d;
+	display: grid;
+	border-radius: 2px;
+	box-shadow: 5px 5px rgba(0, 0,0 , .1)
+}
+ul{
+	margin: 0;
+	padding: 0;
+}
+li{
+	 list-style: none;
+	  margin: 20px;
+}
+input {
+	width: 100%;
+    height: 30px;
+    padding: 5px;
+    background: #fcfcfc;
+    border: 1px solid #a18f89;
+    /* border-bottom: 1px solid #ebeca6; */
+    border-radius: 2px;
+    box-shadow: 0px 3px rgba(0, 0,0 , 0.05) inset;
+}
+input::placeholder{
+	font-size: 16px;
+ 	color:#42abff;
+}
+
+
+input[type="file"] {
+    display: none;
+}
+.inputFoto{
+    /* color: #fff; */
+    font-size: 17px;
+    text-transform: none;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    background: #5f5f5f;
+    display: block;
+    padding: 7px;
+    border: 1px solid #808080;
+    text-align: center;
+    line-height: 109px;
+    margin-bottom: -19px;
+    border-radius: 9px;
+    box-shadow: 0px 0px rgba(0, 0,0 , .2);
+	background-image: url(img/perfil.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.button{
+	color:#fff;
+	font-size: 16px;
+    width: 102%;
+    height: 50px;
+    background: #42abff;
+    border: 1px solid #64baff;
+    text-align: center;
+    margin-top: 41px;
+    border-radius: 2px;
+    box-shadow: 3px 4px rgba(0, 0,0 , .2)
+}
+label{
+	color:#dedede;
+	text-transform: uppercase;
+	font-size: 12px;
+}
+</style>
+
+</head>
+<body>
+
+
+	<form action="thanx.html" id="form">
+		<ul>
+			<li>
+				<!-- <label for="btn">foto: </label> -->
+				<label class="inputFoto" id="btn" for="foto"></label><br>
+				<input type="file" id="foto">
+			</li>
+			<li>
+				<label for="nombre">Nombre: </label><br>
+				<input type="text" id="nombre" placeholder="nombre">
+			</li>
+			<li>
+				<label for="nombre">Parentezco: </label><br>
+				<input list="list" id="parentezco" placeholder="familia">
+				<datalist id="list" >
+					<!--Supplement an id here instead of using 'text'-->
+					<option value="hermano">hermano/a</option>
+					<option value="padres">padre/madre</option>
+					<option value="sobrino">sobrino/a</option>
+					<option value="novio">novio/a</option>
+				</datalist> 
+				
+			</li>
+
+			<li>
+				<label for="nombre">Direccion: </label><br>
+				<input type="text" id="direccion" placeholder="calle, ciudad">
+			</li>
+			
+			<li>
+				<button class="button" type="submit">Crear</button>
+			</li>
+		</ul>
+	</form>
+	<ul id="lista">
+
+	</ul>
+
+
+
+
+<script>
+
+//render
+document.getElementById("foto").addEventListener('change', pic)
+function pic(e) {
+	const arr = e.target.value.split("\\")
+	document.getElementById("btn").textContent = "";
+	document.getElementById("btn").style.backgroundImage = `url('img/${arr[(arr.length-1)]}')`
+
+}
+
+//form input
+const lista = [];
+
+function submit(e){
+	e.preventDefault();	
+	//form 
+	const f = document.querySelector('#foto').value || 'NN';
+	const n = document.querySelector('#nombre').value || 'NN';
+	const r = document.querySelector('#parentezco').value || 'NN';
+	const d = document.querySelector('#direccion').value || 'NN, NN';
+	
+	
+
+	
+	//return
+	var person = new Familiar (f, n, r, d); 
+	lista.push(person);
+	render(person);
+	console.log(lista);
+	
+	//reset
+	document.getElementById('form').reset();
+	document.getElementById("btn").style.backgroundImage = "";
+	document.querySelector('#nombre').focus();
+}
+
+document.querySelector('form').addEventListener('submit', submit);
+
+
+//Constructor Familiar
+function Familiar(foto, nombre, relacion, direccion ){
+
+	const arr = direccion.split(',');
+	this.foto = foto;
+	this.nombre = nombre;
+	this.relacion = relacion
+	this.direccion = {
+					calle: arr[0],
+					ciudad: arr[1],
+	}
+
+	this.quien = function() {
+		return `${nombre} es mi ${relacion}. Vive en la calle ${this.direccion.calle} de la ciudad de ${this.direccion.ciudad}`
+	}
+}
+
+//render
+function render(person) {
+
+	const lista = document.getElementById("lista");
+	//crearElement
+	familiar = document.createElement('li');
+	//contenido
+	familiar.textContent = `${person.nombre}`
+	//dar estilo
+	familiar.classList.add('familiar')
+	//append
+	lista.appendChild(familiar)
+}
+
+</script>
+</body>
+</html>
