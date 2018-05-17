@@ -31,7 +31,7 @@
 	}
 	#mask{
 		background:#f2c4fc;
-		height:300px;
+		height:400px;
 		width:300px;
 		padding: 100px;
 		border: 20px solid #2dabff;
@@ -39,7 +39,7 @@
 		border-right:8px solid #2dabff;
 
 		position: absolute;
-/* 		top:100px; */
+		top:120px;
 		left:100px;
 		overflow:hidden;
 	}
@@ -68,33 +68,39 @@ document.addEventListener('DOMContentLoaded', function(){
 		</p>
 		
 		<p>
-		<span>client</span> (visible part)<br>
+		<span>clientHeight:</span> (visible part)<br>
 		clientHeight: ${mask.clientHeight}px<br>
 		clientWidth: ${mask.clientWidth}px
 		</p>
 
 		<p>
-		<span>Scroll</span> (visible+ hidden part)<br>
+		<span>scrollHeight:</span> (visible+ hidden part)<br>
 		scrollHeight: ${mask.scrollHeight}px<br>
 		scrollWidth: ${mask.scrollWidth}px
 		</p>
 				
 		<p>
-		<span>border</span><br>
+		<span>clientTop:</span>borders<br>
 		clientTop: ${mask.clientTop}px<br>
 		clientLeft : ${mask.clientLeft }px
 		</p>
 
 		<p>
-		<span>client + border</span><br>
+		<span>offsetHeight:</span> client + border<br>
 		offsetHeight: ${mask.offsetHeight}px<br>
 		offsetWidth: ${mask.offsetWidth}px
 		</p>
 
 		<p>
-		<span>Scrolltop</span> (cuanto se escroleó)<br>
+		<span>scrollTop:</span> (cuanto se escroleó)<br>
 		scrollTop: ${mask.scrollTop}px<br>
 		scrollLeft: ${mask.scrollLeft}px
+		</p>
+
+		<p>
+		<span>offseTop:</span>px from parent top<br>
+		offsetTop: ${mask.offsetTop}px<br>
+		offsetLeft: ${mask.offsetLeft}px
 		</p>
 	`
 
@@ -112,9 +118,10 @@ document.addEventListener('DOMContentLoaded', function(){
 	marcadorAltura.style.cssText  = `
 		background:red; 
 		height:1px;
-		width:120px;
+		width:800px;
+		z-index:9;
 		position: absolute;
-		top:${mask.offsetHeight/2}px;
+		top:${mask.offsetHeight/2 + mask.offsetTop }px;
 		`
 	
 
