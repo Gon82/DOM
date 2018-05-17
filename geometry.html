@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>::Geometry::</title>
+
+<style>
+	body{
+		font-family: sans-serif;
+		font-size: 16px;
+		line-height:20px;
+/* 		letter-spacing: 1px; */
+		margin:0;
+		padding:0;
+		
+	}
+	#div1{
+		height: 1600px;
+		display:block;
+		width: 300px;
+		padding: 0px 100px;
+
+		background: #47b8ff;
+		position: absolute;
+		top:0;
+		left:0;
+	
+
+	}
+	#mask{
+		background:#f2c4fc;
+		height:300px;
+		width:300px;
+		padding: 100px;
+		border: 20px solid #2dabff;
+		border-top:10px solid #2dabff;
+		border-right:8px solid #2dabff;
+
+		position: absolute;
+/* 		top:100px; */
+		left:100px;
+		overflow:hidden;
+	}
+
+	span{
+		font-weight: 900;
+		margin-left:-40px
+	}
+
+</style>	
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+	const content = document.getElementById('content');
+	const div1 = document.getElementById('div1');
+	const mask = document.getElementById('mask');
+	mask.scrollTop = 20;
+
+	let infoDiv1 = `
+		<p>
+		<span>CSS</span><br>
+		height: ${window.getComputedStyle(div1).getPropertyValue('height')}<br>
+		width: ${window.getComputedStyle(div1).getPropertyValue('width')}<br>
+		padding: ${window.getComputedStyle(div1).getPropertyValue('padding')}<br>
+		border: ${window.getComputedStyle(div1).getPropertyValue('border-width')}
+		</p>
+		
+		<p>
+		<span>client</span> (visible part)<br>
+		clientHeight: ${mask.clientHeight}px<br>
+		clientWidth: ${mask.clientWidth}px
+		</p>
+
+		<p>
+		<span>Scroll</span> (visible+ hidden part)<br>
+		scrollHeight: ${mask.scrollHeight}px<br>
+		scrollWidth: ${mask.scrollWidth}px
+		</p>
+				
+		<p>
+		<span>border</span><br>
+		clientTop: ${mask.clientTop}px<br>
+		clientLeft : ${mask.clientLeft }px
+		</p>
+
+		<p>
+		<span>client + border</span><br>
+		offsetHeight: ${mask.offsetHeight}px<br>
+		offsetWidth: ${mask.offsetWidth}px
+		</p>
+
+		<p>
+		<span>Scrolltop</span> (cuanto se escroleó)<br>
+		scrollTop: ${mask.scrollTop}px<br>
+		scrollLeft: ${mask.scrollLeft}px
+		</p>
+	`
+
+	function render() {
+		const infoMod1 = document.createElement('div')
+		infoMod1.innerHTML = infoDiv1;
+		div1.insertAdjacentElement('afterbegin',infoMod1)
+// 		console.log(infoDiv1)		
+	}
+	render()
+
+	const marcadorAltura = document.createElement('div');
+	marcadorAltura.textContent = 'mitad';
+	content.insertAdjacentElement('afterbegin',marcadorAltura);
+	marcadorAltura.style.cssText  = `
+		background:red; 
+		height:1px;
+		width:120px;
+		position: absolute;
+		top:${mask.offsetHeight/2}px;
+		`
+	
+
+
+
+})
+</script>
+</head>
+<body>
+<div id="content">
+	<div id="mask">
+		<div id="div1" contenteditable="true" >
+		</div>
+	</div>
+</div>
+</body>
+</html>
