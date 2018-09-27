@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Test</title>
+	<style>
+		#eldiv{
+			background: lightcyan;
+			width: 300px;
+			margin: 50px auto
+			}
+	</style>
+</head>
+<body>
+	<div id="main">
+		<div id="eldiv">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt doloremque laudantium, id necessitatibus excepturi fugiat sint eum asperiores fuga ipsa consectetur odit voluptatibus amet labore neque quod, assumenda ut maiores?0
+		</div>
+	</div>
+
+<script>
+	/*Elegir elemento de referncia*/
+	var elemento = document.querySelector('#eldiv');
+	elemento.style.cssText = "transition: all .5s; transition-timing-function: cubic-bezier(0.31, -0.18, 0.31, 1.54)"
+
+	/*Marcador*/
+	var marcador = document.createElement('div')
+
+	marcador.style.cssText = `
+        width: 100px;
+        height:100px;
+        border-top: 1px solid red;
+        border-left: 1px solid blue;
+
+        transition: all .8s;
+        transition-timing-function: cubic-bezier(0.31, -0.18, 0.31, 1.54);
+
+        position:absolute;
+        top:0px ;
+        left:0px;
+
+    `;
+
+
+	document.body.appendChild(marcador);
+
+
+	/*controller*/
+	var main = document.querySelector('#main')
+	var slider = document.createElement('input')
+
+	slider.type = "range";
+	slider.min = "0";
+	slider.max = "200";
+
+	main.appendChild(slider);
+
+
+	slider.addEventListener('mouseup', function () {
+
+		elemento.style.margin = slider.value + "px";
+		elemento.addEventListener('transitionend', function (e) {
+
+			if (e.elapsedTime > 0.3) {
+				marcadorPosition()
+			}
+		})
+	})
+
+
+	function marcadorPosition() {
+
+		let top = `${elemento.getBoundingClientRect().top - document.body.getBoundingClientRect().top}px`
+		let left = `${elemento.getBoundingClientRect().left - document.body.getBoundingClientRect().left}px`
+
+		marcador.style.top = top;
+		marcador.style.left = left;
+
+	}
+
+	marcadorPosition()
+
+
+</script>
+
+
+</body>
+
+</html>

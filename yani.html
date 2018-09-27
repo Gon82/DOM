@@ -15,7 +15,7 @@
         }
 
         .container {
-            /* height: 100vh;  */
+
             display: grid;
             /* grid-template-columns: 3;
         grid-template-rows: 3; */
@@ -154,7 +154,7 @@
                 var lista = [];
                 const arr = inputZone.value.split(/\n/gm);
                 arr.forEach(function (linea, i) {
-                    arr[i] = linea.split(/\x09/);
+                    arr[i] = linea.split(/\x09/); //unicode tab
 
                     var prod =
                         new Producto(
