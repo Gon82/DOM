@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>DOM</title>
+</head>
+<!-- ::::::::::::::::: CSS :::::::::::::::::::: -->
+<style>
+	body {
+		margin: 0;
+		padding: 0;
+		font-family: 'Courier New', Courier, monospace;
+		height: 200vh;
+		background: #3f3f3f;
+		color:#fff;
+	}
+	header{
+		min-height: 500px;
+		background: rgb(68, 65, 94);
+		width: 100%;
+		margin:0
+	}
+
+
+	nav {
+		width: 80%;
+		display: block;
+		border-bottom:3px solid #35114b;
+		background: #6b6b78;
+		height: 20px;
+		padding: 3% 10%;
+		position: relative;
+		bottom: 0;
+		margin: 0;
+		transition: all .5s;
+		transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+		/* transition-duration: 3s; */
+		animation-direction: alternate-reverse;
+	}
+
+	.stick nav{
+		position: fixed;
+		top:0;
+		height:20px;
+		background: #6666bd;
+		padding: 1% 10%;
+	}
+	.nav_inner{
+		width: 0%;
+		height: 100%;
+		background: red;
+		transition: all .8s;
+	}
+
+	.stick .nav_inner{
+		width: 100%
+	}
+	nav a {
+		color: #fff;
+		text-decoration: none;
+		margin-left: 20px;
+	}
+/*indicador*/
+	.indicador_1, .indicador_2, .indicador_3   {
+		position: fixed;
+		bottom: 10px;
+		font-size: 13px
+	}
+	.indicador_1 {
+		left: 20px;
+	}
+
+	.indicador_2 {
+		left: 200px;
+	}
+	.indicador_3 {
+		left: 400px;
+	}
+	h4{
+		color:#ffff00
+	}
+
+</style>
+<!-- ::::::::::::::::: HTML :::::::::::::::::::: -->
+
+	<body>
+
+		<div class="main_container">
+			<header>
+				<!-- header -->
+			</header>
+			<nav>
+				<div class="nav_inner">
+					<a href="#">Home</a>
+					<a href="#">Contacto</a>
+				</div>
+			</nav>
+		</div>
+
+		<div class="indicador_1">
+			<!-- indicadores -->
+		</div>
+		<div class="indicador_2">
+			<!-- indicadores -->
+		</div>
+		<div class="indicador_3">
+				<!-- indicadores -->
+		</div>
+
+	</body>
+
+	</html>
+
+<!-- ::::::::::::::::: JS :::::::::::::::::::: -->
+	<script>
+		var indicador_1 = document.querySelector('.indicador_1')
+		var indicador_2 = document.querySelector('.indicador_2')
+		var indicador_3 = document.querySelector('.indicador_3')
+
+		var nav = document.querySelector('NAV')
+		var navInner = document.querySelector('.nav_inner')
+		// var navPuntoOrigen =  nav.getBoundingClientRect(); // definir la posicion original de nav antes de listener scroll. 
+		var navPuntoOrigen = nav.offsetTop
+		
+		document.addEventListener('scroll', function stick(e) {
+			
+			var nav = document.querySelector('NAV')
+			var navRect = nav.getBoundingClientRect();
+			var bodyRect = document.body.getBoundingClientRect();
+			
+			indicador_1.innerHTML = `
+				<h4>Nav</h4>
+				clientRect<br>
+				<br>
+				top: ${navRect.top}<br>
+				right: ${navRect.right}<br>
+				bottom: ${navRect.bottom}<br>
+				left: ${navRect.left}<br>
+				width: ${navRect.width}<br>
+				height: ${navRect.height}<br>
+				x: ${navRect.x}<br>
+				y: ${navRect.y}<br>
+				<br>
+				otros<br>
+				<br>
+				nav.scrollHeight: ${nav.scrollHeight}<br>
+				nav.clientHeight: ${nav.clientHeight}<br>
+				nav.offsetHeight: ${nav.offsetHeight}<br>
+				<br>
+				nav.offsetTop: ${nav.offsetTop}<br> <posicion
+				nav.offsetLeft: ${nav.offsetLeft}<br>
+				`
+
+
+			indicador_2.innerHTML = `
+				<h4>Body</h4>
+				top: ${bodyRect.top}<br>
+				right: ${bodyRect.right}<br>
+				bottom: ${bodyRect.bottom}<br>
+				left: ${bodyRect.left}<br>
+				width: ${bodyRect.width}<br>
+				height: ${bodyRect.height}<br>
+				x: ${bodyRect.x}<br>
+				y: ${bodyRect.y}
+				`
+			indicador_3.innerHTML = `
+				<h4>Window</h4>
+				window.scrollY: ${window.scrollY}<br>
+				window.scrollX: ${window.scrollX}<br>
+				<br>
+				window.pageYOffset : ${window.pageYOffset}<br>
+				window.pageXOffset : ${window.pageXOffset}<br>
+				<br>
+				window.innerHeight  : ${window.innerHeight }<br>
+				window.innerWidth  : ${window.innerWidth }<br>
+				<br>
+				window.outerHeight  : ${window.outerHeight }<br>
+				window.outerWidth  : ${window.outerWidth }<br>
+				<br>
+				`
+
+			if(window.scrollY >= navPuntoOrigen ){
+				// document.body.style.paddingTop = (navRect.top1 +100) + 'px';
+				// console.log(nav.offsetHeight + 'px')
+				document.body.classList.add('stick')
+			}
+			else{
+				document.body.classList.remove('stick')
+
+			}
+		})
+
+
+
+
+
+
+
+	</script>
